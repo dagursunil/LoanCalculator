@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.sk.loan.calculator.bean.LoanInput;
+import com.sk.loan.calculator.properties.MessageProperties;
 /**
  * Validator class to validate user input.
  * @author sdagur
@@ -17,6 +18,7 @@ import com.sk.loan.calculator.bean.LoanInput;
  */
 @Component
 public class LoanInputValidator implements Validator{
+
 	Logger logger=Logger.getLogger(LoanInputValidator.class.getName());
 	
 	@Override
@@ -32,23 +34,23 @@ public class LoanInputValidator implements Validator{
 			
 			if(input.getDuration()<=0) {
 				
-				errors.reject("duration","Loan duration should be more than zero in months");
+				errors.reject("duration",MessageProperties.DURATION_VALIDATION_ERROR);
 			}
 			if(input.getLoanAmount()<=0) {
-				errors.reject("loanAmount","Loan amount should be more than zero");
+				errors.reject("loanAmount",MessageProperties.LOAN_AMOUNT_VALIDATION_ERROR);
 			}
 			if(input.getNominalRate()<=0) {
-				errors.reject("nominalRate","Nominal rate should be more than zero");
+				errors.reject("nominalRate",MessageProperties.NOMINAL_RATE_VALIDATION_ERROR);
 			}
 			if(input.getStartDate()==null || input.getStartDate().trim()=="") {
-				errors.reject("startDate","Start Date can not be null or empty");
+				errors.reject("startDate",MessageProperties.START_DATE_VALIDATION_ERROR);
 			}else {
 				try {
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 					Date startDate=dateFormat.parse(input.getStartDate());
 				}catch(Exception e) {
 					logger.log(Level.WARNING,"start date format not acceptable");
-					errors.reject("startDate","Start date format incorrect.Please input start date in format of yyyy-MM-dd'T'HH:mm:ss'Z'");
+					errors.reject("startDate",MessageProperties.START_DATE_FORMAT_ERROR);
 				}
 			}
 			

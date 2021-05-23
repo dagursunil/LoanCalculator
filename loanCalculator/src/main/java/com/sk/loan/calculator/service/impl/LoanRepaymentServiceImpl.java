@@ -12,6 +12,7 @@ import com.sk.loan.calculator.bean.BorrowerPayment;
 import com.sk.loan.calculator.bean.BorrowerPayments;
 import com.sk.loan.calculator.bean.LoanInput;
 import com.sk.loan.calculator.exception.LoanCalculatorExcpetion;
+import com.sk.loan.calculator.properties.MessageProperties;
 import com.sk.loan.calculator.service.LoanRepaymentService;
 /**
  * 
@@ -20,6 +21,10 @@ import com.sk.loan.calculator.service.LoanRepaymentService;
  */
 @Service
 public class LoanRepaymentServiceImpl implements LoanRepaymentService {
+
+	
+
+
 
 	/**
 	 * Method to calculate monthly payment.
@@ -84,7 +89,7 @@ public class LoanRepaymentServiceImpl implements LoanRepaymentService {
 			
 			return payments;
 		} catch (Exception e) {
-			throw new LoanCalculatorExcpetion("Error while calculating monthly installment.");
+			throw new LoanCalculatorExcpetion(MessageProperties.INSTALLMENT_ERROR);
 		}
 	}
 
