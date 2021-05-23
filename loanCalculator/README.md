@@ -43,3 +43,24 @@ xml
 
 5. Port of the application to be run can be changed in application.properties ,example:
 server.port=8080
+
+# How to build
+
+Prerequisite :  maven should be installed and enabled.
+For executing the project directly from directory please follow steps mentioned below :
+
+```
+Windows :
+1.) Go to project directory .
+2.) Open command prompt.
+3.) Type mvnw clean install
+4.) type mvnw spring-boot:run
+```
+
+```
+Unix : 
+1. cd to project directory.
+2.) ./mvnw clean install
+3.) ./mvnw spring-boot:run
+```
+	
